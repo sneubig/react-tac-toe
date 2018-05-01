@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-class Square extends React.Component {
-  render() {
-    return (
-      <button className="square" onClick={() => this.props.onClick()}>
-        {this.props.value}
-      </button>
-    );
-  }
+// Square no longer keeps its own state; 
+// It receives its value from its parent Board and informs its parent when it's clicked. 
+    // Componenets like this are called 'Controlled Components'
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
 
 class Board extends React.Component {
@@ -22,8 +23,10 @@ class Board extends React.Component {
     };
   }
 
+  // When click in a squares to fill them, the state is stored in the Board component
+  // rather than in each Square
   handleClick(i) {
-    const squares = this.state.squares.slice();
+    const squares = this.state.squares.slice(); // Call .slice() to copy the squares array instead of mutating the existing array
     squares[i] = 'X';
     this.setState({squares: squares});
   }
