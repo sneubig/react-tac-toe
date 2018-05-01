@@ -20,6 +20,7 @@ class Board extends React.Component {
     super(props); // Need to explicitly call super() when defining the constructor of a subclass
     this.state = {
       squares: Array(9).fill(null),
+      xIsNext: true, // defaults the first move to be by 'X'
     };
   }
 
@@ -27,8 +28,11 @@ class Board extends React.Component {
   // rather than in each Square
   handleClick(i) {
     const squares = this.state.squares.slice(); // Call .slice() to copy the squares array instead of mutating the existing array
-    squares[i] = 'X';
-    this.setState({squares: squares});
+    squares[i] = this.state.xIsNext ? 'X' : 'O'; // Alternates each turn between X and O 
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext, // Sets the state to the opposite boolean value that xIsNext is currently
+    });
   }
 
   renderSquare(i) {
