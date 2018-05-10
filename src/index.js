@@ -14,7 +14,10 @@ function Square(props) {
   );
 }
 
+
+
 class Board extends React.Component {
+  
   // Constructor to initialize the state
   constructor(props) {
     super(props); // Need to explicitly call super() when defining the constructor of a subclass
@@ -55,13 +58,20 @@ class Board extends React.Component {
     const winner = calculateWinner(this.state.squares);
     let status;
     if(winner){
-      status = 'Winner: ' + winner;
+      status = 'The winner is ' + winner;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
+    var boardStyle = {
+      marginTop: 0,
+      marginRight: 'auto',
+      marginBottom: 0,
+      marginLeft: 'auto'
+    };
+
     return (
-      <div>
-        <div className="status">{status}</div>
+      <div style={boardStyle}>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -77,6 +87,9 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+
+        <div className="status">{status}</div>
+
       </div>
     );
   }
@@ -84,15 +97,36 @@ class Board extends React.Component {
 
 class Game extends React.Component {
   render() {
+    const title = 'React-Tac-Toe';
+    const status = 'Welcome to React-Tac-Toe. It takes 3 in a row to win the game. ';
+
+
+    var titleStyle = {
+      display: "block",
+      margin: "0 auto",
+      fontSize: 32,
+      paddingBottom: 20
+    };
+
+    var gameInfoStyle = {
+      textAlign: 'center'
+    };
+
+    
+
     return (
       <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
+        
+          <div className="game-board">
+            <div style={gameInfoStyle}>
+              <div style={titleStyle}>{title}</div>
+              <div>{status}</div>
+            </div>
+            
+            <Board />
+
+          </div>
+   
       </div>
     );
   }

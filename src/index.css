@@ -7,14 +7,21 @@ ol, ul {
   padding-left: 30px;
 }
 
+
+
 .board-row:after {
   clear: both;
   content: "";
   display: table;
 }
 
+Board {
+  border: 5px solid black;
+}
+
 .status {
   margin-bottom: 10px;
+  font-size: 1em;
 }
 
 .square {
@@ -41,10 +48,18 @@ ol, ul {
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  /*display: flex;
+  flex-direction: row;*/
 }
 
-.game-info {
-  margin-left: 20px;
+.board {
+  margin-left: 25%;
 }
+
+.game-board {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
