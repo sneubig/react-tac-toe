@@ -14,7 +14,10 @@ function Square(props) {
   );
 }
 
+
+
 class Board extends React.Component {
+  
   // Constructor to initialize the state
   constructor(props) {
     super(props); // Need to explicitly call super() when defining the constructor of a subclass
@@ -59,8 +62,16 @@ class Board extends React.Component {
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
+    var boardStyle = {
+      marginTop: 0,
+      marginRight: 'auto',
+      marginBottom: 0,
+      marginLeft: 'auto'
+    };
+
     return (
-      <div>
+      <div style={boardStyle}>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -87,18 +98,35 @@ class Board extends React.Component {
 class Game extends React.Component {
   render() {
     const title = 'React-Tac-Toe';
-    const status = 'Welcome to React-Tac-Toe. It takes 3 in a row to win the game. '
+    const status = 'Welcome to React-Tac-Toe. It takes 3 in a row to win the game. ';
+
+
+    var titleStyle = {
+      display: "block",
+      margin: "0 auto",
+      fontSize: 32,
+      paddingBottom: 20
+    };
+
+    var gameInfoStyle = {
+      textAlign: 'center'
+    };
+
+    
+
     return (
       <div className="game">
         
-        <div className="game-board">
-        <div className="title">{title}</div>
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
+          <div className="game-board">
+            <div style={gameInfoStyle}>
+              <div style={titleStyle}>{title}</div>
+              <div>{status}</div>
+            </div>
+            
+            <Board />
+
+          </div>
+   
       </div>
     );
   }
